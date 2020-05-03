@@ -1,5 +1,6 @@
 from .BluetoothHCI import *
 from .Io import *
+from  import bytes
 
 MGMT_OP_LOAD_LONG_TERM_KEYS = 0x0013
 
@@ -20,7 +21,8 @@ class Mgmt:
         self._socket.open(HCI_CHANNEL_CONTROL)
 
     def onSocketData(self, data):
-        print('MGMT READING: ', bytes(data).hex())
+        #print('MGMT READING: ', bytes(data).hex())
+        print('MGMT READING: ', bytes(data)
 
     def onSocketError(self, error):
         if error.message == 'Operation not permitted':

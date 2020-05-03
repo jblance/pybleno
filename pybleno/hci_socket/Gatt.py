@@ -256,6 +256,7 @@ class Gatt:
 
     def handleRequest(self, request):
         # debug('handing request: ' + request.toString('hex'))
+        print('Gatt: handleRequest: ' + request)
 
         requestType = request[0]
 
