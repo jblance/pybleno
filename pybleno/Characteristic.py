@@ -65,7 +65,7 @@ class Characteristic(dict):
         self.updateValueCallback = None
 
     def onNotify(self):
-        pass
+        print('Characteristic onNotify')
 
     def onIndicate(self):
         pass
