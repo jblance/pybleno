@@ -256,7 +256,7 @@ class Gatt:
 
     def handleRequest(self, request):
         # debug('handing request: ' + request.toString('hex'))
-        print('Gatt: handleRequest: ' + request)
+        print('Gatt: handleRequest: ' + [hex(c) for c in request])
 
         requestType = request[0]
 
@@ -312,6 +312,8 @@ class Gatt:
     def handleFindInfoRequest(self, request):
         startHandle = readUInt16LE(request, 1)
         endHandle = readUInt16LE(request, 3)
+
+        print('handleFindInfoRequest. Handles: ' + self._handles)
 
         infos = []
 
