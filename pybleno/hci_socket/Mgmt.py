@@ -1,6 +1,6 @@
 from .BluetoothHCI import *
 from .Io import *
-from  import bytes
+from builtins import bytes
 
 MGMT_OP_LOAD_LONG_TERM_KEYS = 0x0013
 
