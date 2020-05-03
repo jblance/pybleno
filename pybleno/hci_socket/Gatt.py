@@ -726,6 +726,7 @@ class Gatt:
                     return callback
 
                 callback = create_callback(requestType, valueHandle, withoutResponse)
+                print('Gatt 729: creating callback', requestType, valueHandle, withoutResponse)
 
                 if handleSecure & (0x04 if withoutResponse else 0x08) and not self._aclStream.encrypted:
                     response = self.errorResponse(requestType, valueHandle, ATT_ECODE_AUTHENTICATION)
