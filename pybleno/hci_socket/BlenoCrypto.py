@@ -8,6 +8,7 @@ def r():
     return os.urandom(16)
 
 def c1(k, r, pres, preq, iat, ia, rat, ra):
+    #print('k: ', k, ' len(k): ', len(k), ' pres: ', pres, ' preq: ', preq, ' iat: ', iat, ' ia: ', ia, ' rat: ', rat, 'ra: ', ra)
     # according to corespec
     #p1 = pres + preq + rat + iat
     #p2 = array.array('B', [0] * 4) + ia + ra
@@ -21,7 +22,7 @@ def c1(k, r, pres, preq, iat, ia, rat, ra):
     res = xor(res, p2)
     res = e(k, res)
 
-    # print('k:',bytes(k).hex(), ' r:',bytes(r).hex(), ' ia:',bytes(ia).hex(), ' ra:',bytes(ra).hex(), ' iat:',bytes(iat).hex(), ' rat:',bytes(rat).hex(), ' preq:',bytes(preq).hex(), ' pres:',bytes(pres).hex(), ' p1:',bytes(p1).hex(), ' p2:',bytes(p2).hex(), 'res:',bytes(res).hex())
+    #print('k:',bytes(k).hex(), ' r:',bytes(r).hex(), ' ia:',bytes(ia).hex(), ' ra:',bytes(ra).hex(), ' iat:',bytes(iat).hex(), ' rat:',bytes(rat).hex(), ' preq:',bytes(preq).hex(), ' pres:',bytes(pres).hex(), ' p1:',bytes(p1).hex(), ' p2:',bytes(p2).hex(), 'res:',bytes(res).hex())
 
     return res
 
@@ -38,8 +39,14 @@ def e(key, data):
     #return array.array('B', cipher.encrypt(bytes(data)))
 
     # according to node
-    key = bytes(swap(key))
-    data = bytes(swap(data))
+    # bytes doesnt work as intended with python2
+    #key = bytes(swap(key))
+    key.reverse()
+    key = key.tostring()
+    #data = bytes(swap(data))
+    data.reverse()
+    data = data.tostring()
+    #print ('key: {}, len: {}, data: {}'.format(key, len(key), data))
     cipher = AES.new(key, AES.MODE_ECB)
     return swap(cipher.encrypt(data))
 
@@ -52,4 +59,7 @@ def xor(b1, b2):
     return result
 
 def swap(src):
-    return array.array('B', src[::-1])
+    #print('swap: {}'.format(src))
+    result = array.array('B', src[::-1])
+    #print ('swap result: {}'.format(result))
+    return result

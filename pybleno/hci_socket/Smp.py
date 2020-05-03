@@ -2,7 +2,7 @@ from . import Emit
 import array
 from .Io import *
 from .Mgmt import *
-from . import Crypto as crypto
+from . import BlenoCrypto as crypto
 
 SMP_CID = 0x0006
 
