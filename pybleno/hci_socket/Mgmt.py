@@ -22,7 +22,7 @@ class Mgmt:
 
     def onSocketData(self, data):
         #print('MGMT READING: ', bytes(data).hex())
-        print('MGMT READING: ', bytes(data)
+        print('MGMT READING: ', bytes(data))
 
     def onSocketError(self, error):
         if error.message == 'Operation not permitted':
