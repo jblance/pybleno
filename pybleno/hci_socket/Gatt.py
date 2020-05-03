@@ -293,6 +293,7 @@ class Gatt:
             self.send(response)
 
     def handleMtuRequest(self, request):
+        print('Gatt: handleMtuRequest')
         mtu = readUInt16LE(request, 1)
 
         if mtu < 23:
@@ -312,6 +313,7 @@ class Gatt:
         return response
 
     def handleFindInfoRequest(self, request):
+        print('Gatt: handleFindInfoRequest')
         startHandle = readUInt16LE(request, 1)
         endHandle = readUInt16LE(request, 3)
 
@@ -380,6 +382,7 @@ class Gatt:
         return response
 
     def handleFindByTypeRequest(self, request):
+        print('Gatt: handleFindByTypeRequest')
         startHandle = readUInt16LE(request, 1)
         endHandle = readUInt16LE(request, 3)
         # uuid = request.slice(5, 7).toString('hex').match(/.{1,2}/g).reverse().join('')
@@ -428,6 +431,7 @@ class Gatt:
         return response
 
     def handleReadByGroupRequest(self, request):
+        print('Gatt: handleReadByGroupRequest')
         startHandle = readUInt16LE(request, 1)
         endHandle = readUInt16LE(request, 3)
         # uuid = request.slice(5).toString('hex').match(/.{1,2}/g).reverse().join('')
@@ -488,6 +492,7 @@ class Gatt:
         return response
 
     def handleReadByTypeRequest(self, request):
+        print('Gatt: handleReadByTypeRequest')
         response = None
         requestType = request[0]
 
@@ -602,6 +607,7 @@ class Gatt:
         return response
 
     def handleReadOrReadBlobRequest(self, request):
+        print('Gatt: handleReadOrReadBlobRequest')
         response = None
 
         requestType = request[0]
@@ -692,6 +698,7 @@ class Gatt:
         return response
 
     def handleWriteRequestOrCommand(self, request):
+        print('Gatt: handleWriteRequestOrCommand')
         response = None
 
         requestType = request[0]
@@ -796,6 +803,7 @@ class Gatt:
         return response
 
     def handlePrepareWriteRequest(self, request):
+        print('Gatt: handlePrepareWriteRequest')
         response = None
 
         requestType = request[0]
@@ -847,6 +855,7 @@ class Gatt:
         return response
 
     def handleExecuteWriteRequest(self, request):
+        print('Gatt: handleExecuteWriteRequest')
         response = None
 
         requestType = request[0]
@@ -889,6 +898,7 @@ class Gatt:
         return response
 
     def handleConfirmation(self, request):
+        print('Gatt: handleConfirmation')
         if self._lastIndicatedAttribute:
             if self._lastIndicatedAttribute.emit:
                 self._lastIndicatedAttribute.emit('indicate', [])
