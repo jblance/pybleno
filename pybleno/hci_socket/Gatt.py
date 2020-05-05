@@ -317,9 +317,9 @@ class Gatt:
         startHandle = readUInt16LE(request, 1)
         endHandle = readUInt16LE(request, 3)
 
-        print('handleFindInfoRequest. Handles: ')
-        for h in self._handles:
-            print(h)
+        #print('handleFindInfoRequest. Handles: ')
+        #for h in self._handles:
+        #    print(h)
 
         infos = []
 
